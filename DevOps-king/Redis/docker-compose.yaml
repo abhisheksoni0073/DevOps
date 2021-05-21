@@ -1,0 +1,9 @@
+redis:
+  image: 'bitnami/redis:latest'
+  hostname: 'redis'
+  environment:
+    - REDIS_PASSWORD=mvJ68f4dttlVv8EjZHNTNIF5iU4mk9gR
+  ports: 
+    - '6379:6379'
+  volumes:
+    - /home/ubuntu/redis-data:/bitnami

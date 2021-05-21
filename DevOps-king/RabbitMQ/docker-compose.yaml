@@ -1,0 +1,16 @@
+version: '3'
+services:
+  stats:
+    image: bitnami/rabbitmq
+    hostname: 'rabbitmq'
+    environment:
+      - RABBITMQ_NODE_TYPE=stats
+      - RABBITMQ_NODE_NAME=rabbit@stats
+      - RABBITMQ_ERL_COOKIE=APLYsce9q65S3ojd
+      - RABBITMQ_USERNAME=MYsmO5Oc7O6DKkS8
+      - RABBITMQ_PASSWORD=ufUPnVWbLoMwwFaL
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    volumes:
+      - /home/ubuntu/mqdata:/bitnami

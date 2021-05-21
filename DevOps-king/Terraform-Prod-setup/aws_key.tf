@@ -1,0 +1,5 @@
+resource "aws_key_pair" "production" {
+    key_name = var.ec2_key
+    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAlZ7vvNdb1jmgLU8DTolmvEo8ebT1BTUwNPs9x0KpZ7hNbedVR7puc3AudZZRiv0/8re6imbfapvOx0vSawfeR+PkCqyB1y7J74ioOtkdoUX8znIB6ggxLgwpzNaE5brERAN205UIrn2p1+RxMQfdB9WclE/Q3K8Z6sCrZ6v2hsyA7AylwAWVReGdaIRYC4SHfXvRdcYzTactkD6mlN5N2gMTl6KN90vLkExsSHDTUO2vXubaAXw9fmDBUCF7ZiAr1VKkmxHmA7BKSGh6zFNMuiF9+d/9EgNyXQgV4nXZVnYTSnm9OQZwaACK+vdL4Acm+uitjejPI1+qLZ7lujWqXQ== rsa-key-20201217"
+  
+}

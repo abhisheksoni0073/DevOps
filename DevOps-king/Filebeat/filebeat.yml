@@ -1,0 +1,43 @@
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+      exclude_lines: ['Harvester']
+
+processors:
+- add_cloud_metadata: ~
+- drop_event:
+    when:
+      equals:
+        container.name: filebeat
+- add_fields:
+    target: environment
+    fields:
+      name: production
+
+# setup filebeat to send output to logstash
+output.logstash:
+  hosts: ["logs.orderhive.plus:5045"]
+
+# setup filebeat to send output to elasticsearch 
+output.elasticsearch:
+  hosts: ["https://myEShost:9200"]
+  username: "filebeat_writer"
+  password: "YOUR_PASSWORD"
+
+# Write Filebeat own logs only to file to avoid catching them with itself in docker log files
+logging.level: info
+logging.to_files: false
+logging.to_syslog: false
+loggins.metrice.enabled: false
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644
+ssl.verification_mode: none
