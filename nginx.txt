@@ -1,0 +1,39 @@
+server {
+    server_name api.enneaapp.com;
+
+    location / {
+        proxy_set_header    Host                $host;
+        proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Forwarded-Proto   $scheme;
+        proxy_set_header    Accept-Encoding     "";
+        proxy_set_header    Proxy               "";
+        proxy_buffering         off;
+        proxy_pass          http://127.0.0.1:3012;
+    }
+
+    listen 443 ssl; # managed by Certbot
+  #  ssl_certificate /etc/letsencrypt/live/api.enneaapp.com/new/fullchain.pem; # managed by Certbot
+   # ssl_certificate_key /etc/letsencrypt/live/api.enneaapp.com/new/privkey.pem; # managed by Certbot
+  #  include /etc/letsencrypt/new/options-ssl-nginx.conf; # managed by Certbot
+   #ssl_dhparam /etc/letsencrypt/new/ssl-dhparams.pem; # managed by Certbot
+
+
+    #ssl_certificate /etc/letsencrypt/live/api.enneaapp.com/new/fullchain.pem; # managed by Certbot
+    #ssl_certificate_key /etc/letsencrypt/live/api.enneaapp.com/new/privkey.pem; # managed by Certbot
+
+    ssl_certificate /etc/letsencrypt/live/api.enneaapp.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/api.enneaapp.com/privkey.pem; # managed by Certbot
+}
+
+server {
+    if ($host = api.enneaapp.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name api.enneaapp.com;
+    return 404; # managed by Certbot
+
+
+}
